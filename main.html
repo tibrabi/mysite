@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profils</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+}
+
+body{
+    background:#000;
+    color:#fff;
+    overflow-x:hidden;
+}
+
+/* HERO */
+header{
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:20px;
+    background:linear-gradient(to bottom,#000,#111);
+}
+
+header h1{
+    font-size:60px;
+    font-weight:600;
+    letter-spacing:-1px;
+    opacity:0;
+    transform:translateY(40px);
+    animation:fadeUp 1.2s ease forwards;
+}
+
+header p{
+    margin-top:20px;
+    font-size:20px;
+    color:#aaa;
+    opacity:0;
+    transform:translateY(40px);
+    animation:fadeUp 1.2s ease forwards;
+    animation-delay:0.4s;
+}
+
+/* GRID */
+.container{
+    max-width:1200px;
+    margin:0 auto;
+    padding:100px 20px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:40px;
+}
+
+.card{
+    background:#111;
+    border-radius:25px;
+    overflow:hidden;
+    transition:0.5s cubic-bezier(.22,1,.36,1);
+    opacity:0;
+    transform:translateY(50px);
+}
+
+.card.visible{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.card:hover{
+    transform:scale(1.03);
+    box-shadow:0 30px 60px rgba(255,255,255,0.08);
+}
+
+.card img{
+    width:100%;
+    height:400px;
+    object-fit:cover;
+    filter:brightness(0.9);
+    transition:0.5s ease;
+}
+
+.card:hover img{
+    filter:brightness(1.05);
+}
+
+.card-content{
+    padding:30px;
+}
+
+.card h2{
+    font-size:24px;
+    margin-bottom:10px;
+}
+
+.role{
+    color:#888;
+    margin-bottom:15px;
+}
+
+.info{
+    font-size:14px;
+    line-height:1.6;
+    color:#ccc;
+}
+
+/* FOOTER */
+footer{
+    text-align:center;
+    padding:60px;
+    color:#666;
+}
+
+/* ANIMATIONS */
+@keyframes fadeUp{
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Notre Équipe</h1>
+    <p>Des profils. Du talent. De l’élégance.</p>
+</header>
+
+<section class="container">
+
+<div class="card">
+    <img src="https://via.placeholder.com/600x800" alt="">
+    <div class="card-content">
+        <h2>Jean Dupont</h2>
+        <div class="role">Développeur</div>
+        <div class="info">
+            Expert en développement moderne, passionné par l'expérience utilisateur et les interfaces fluides.
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <img src="https://via.placeholder.com/600x800" alt="">
+    <div class="card-content">
+        <h2>Sarah Martin</h2>
+        <div class="role">Designer</div>
+        <div class="info">
+            Spécialiste UI/UX, elle crée des interfaces minimalistes et élégantes.
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <img src="https://via.placeholder.com/600x800" alt="">
+    <div class="card-content">
+        <h2>Lucas Bernard</h2>
+        <div class="role">Chef de projet</div>
+        <div class="info">
+            Organise et pilote les projets avec précision et vision stratégique.
+        </div>
+    </div>
+</div>
+
+</section>
+
+<footer>
+© 2026 — Tous droits réservés
+</footer>
+
+<script>
+/* Animation apparition au scroll */
+const cards = document.querySelectorAll('.card');
+
+const observer = new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+        if(entry.isIntersecting){
+            entry.target.classList.add('visible');
+        }
+    });
+},{threshold:0.2});
+
+cards.forEach(card=>{
+    observer.observe(card);
+});
+</script>
+
+</body>
+</html>
